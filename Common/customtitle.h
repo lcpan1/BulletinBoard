@@ -11,7 +11,7 @@ class CustomTitle : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CustomTitle(QWidget *parent = 0,bool maxmin = false);
+    explicit CustomTitle(QWidget *parent = 0,bool maxmin = false,int height = 32);
     void setTitleHight(int height);
     void setTitleName(const QString & name);
 
@@ -30,19 +30,22 @@ private slots:
     void onCloseButtonclick();
     void onClickedButtonMaxmin();
     void onclickedButtonMin();
+
 private:
     QLabel *m_pLabelTitle;
     QPushButton *m_pButtonMin;
     QPushButton *m_pButtonClose;
-    QPushButton *m_pButtonMaxMin;
+    QPushButton *m_pButtonMax;
+    QPushButton *m_pButtonRestore;
     QHBoxLayout *m_pLayout;
 private:
-    QPixmap pixrestore;
-    QPixmap pixmax;
-    bool m_bMaxmin; //最大化还原按钮
+
+    bool m_bMaxmin; //是否支持最大化最小化
     bool m_bMax;
     bool m_isPressed;
     QPoint m_startMovePos;
+
+    int m_iHeight;
 };
 
 #endif // CUSTOMTITLE_H

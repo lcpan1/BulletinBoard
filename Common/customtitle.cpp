@@ -7,60 +7,74 @@
 #include <QPainter>
 #include <QDebug>
 
-//#ifdef Q_OS_WIN
-//#pragma comment(lib, "user32.lib")
-//#include <qt_windows.h>
-//#endif
-
-CustomTitle::CustomTitle(QWidget *parent,bool maxmin) : QWidget(parent)
+CustomTitle::CustomTitle(QWidget *parent,bool maxmin,int height) : QWidget(parent)
 {
+    this->setAutoFillBackground(true);
+    QPalette pal;
+    pal.setColor(QPalette::Background,QColor(0,0,0));
+    this->setPalette(pal);
+
+
     m_bMaxmin = maxmin;
     m_isPressed = false;
     m_bMax = false;
 
-    this->setFixedHeight(32);
+    this->setFixedHeight(height);
     m_pLabelTitle = new QLabel(this);
     m_pLabelTitle->setObjectName("CustomLableTitle");
 
     m_pButtonMin = new QPushButton(this);
     m_pButtonMin->setObjectName("CustomButtonMin");
-    m_pButtonMin->setFixedSize(24,24);
+    m_pButtonMin->setFixedSize(height*2/3,height*2/3);
 
-    m_pButtonMaxMin = new QPushButton(this);
-    m_pButtonMaxMin->setObjectName("CustomButtonMaxmin");
-    m_pButtonMaxMin->setFixedSize(24,24);
+    m_pButtonMax = new QPushButton(this);
+    m_pButtonMax->setObjectName("CustomButtonMax");
+    m_pButtonMax->setFixedSize(height*2/3,height*2/3);
 
-    pixmax = QPixmap("./image/max2.png");
-    pixrestore = QPixmap("./image/restore.png");
-    m_pButtonMaxMin->setIcon(pixmax);
+    m_pButtonRestore = new QPushButton(this);
+    m_pButtonRestore->setObjectName("CustomButtonRestore");
+    m_pButtonRestore->setFixedSize(height*2/3,height*2/3);
 
     m_pButtonClose = new QPushButton(this);
     m_pButtonClose->setObjectName("CustomButtonClose");
-    m_pButtonClose->setFixedSize(24,24);
+    m_pButtonClose->setFixedSize(height*2/3,height*2/3);
 
     if(!m_bMaxmin)
     {
-        m_pButtonMaxMin->setVisible(false);
+        m_pButtonMax->setVisible(false);
         m_pButtonMin->setVisible(false);
+        m_pButtonRestore->setVisible(false);
     }
+    else
+    {
+        m_pButtonRestore->setVisible(m_bMax);
+        m_pButtonMax->setVisible(!m_bMax);
+    }
+
+
+
+
 
     m_pLayout = new QHBoxLayout(this);
     m_pLayout->addStretch();
     m_pLayout->addWidget(m_pLabelTitle);
     m_pLayout->addStretch();
     m_pLayout->addWidget(m_pButtonMin);
-    m_pLayout->addWidget(m_pButtonMaxMin);
+    m_pLayout->addWidget(m_pButtonMax);
+    m_pLayout->addWidget(m_pButtonRestore);
     m_pLayout->addWidget(m_pButtonClose);
 
     m_pLayout->setContentsMargins(0,0,10,0);
     setLayout(m_pLayout);
     connect(m_pButtonClose,SIGNAL(clicked(bool)),this,SLOT(onCloseButtonclick()));
-    connect(m_pButtonMaxMin,SIGNAL(clicked(bool)),this,SLOT(onClickedButtonMaxmin()));
+    connect(m_pButtonMax,SIGNAL(clicked(bool)),this,SLOT(onClickedButtonMaxmin()));
+    connect(m_pButtonRestore,&QPushButton::clicked,this,&CustomTitle::onClickedButtonMaxmin);
     connect(m_pButtonMin,&QPushButton::clicked,this,&CustomTitle::onclickedButtonMin);
 }
 
 void CustomTitle::setTitleHight(int height)
 {
+    m_iHeight = height;
     this->setFixedHeight(height);
 }
 
@@ -70,22 +84,6 @@ void CustomTitle::setTitleName(const QString &name)
     m_pLabelTitle->setText(name);
     m_pLabelTitle->setToolTip(name);
 }
-
-//void CustomTitle::mousePressEvent(QMouseEvent *event)
-//{
-//#ifdef Q_OS_WIN
-//    if (ReleaseCapture() && !(this->parentWidget()->isMaximized()))
-//    {
-//        QWidget *pWindow = this->window();
-//        if (pWindow->isTopLevel())
-//        {
-//            SendMessage(HWND(pWindow->winId()), WM_SYSCOMMAND, SC_MOVE + HTCAPTION, 0);
-//        }
-//    }
-//    event->ignore();
-//#else
-//#endif
-//}
 
 void CustomTitle::mousePressEvent(QMouseEvent *event)
 {
@@ -156,14 +154,17 @@ void CustomTitle::onClickedButtonMaxmin()
         if(pWindow->isMaximized())
         {
             pWindow->showNormal();
-            m_pButtonMaxMin->setIcon(pixmax);
             m_bMax = false;
+            m_pButtonRestore->setVisible(m_bMax);
+            m_pButtonMax->setVisible(!m_bMax);
         }
         else
         {
             pWindow->showMaximized();
-            m_pButtonMaxMin->setIcon(pixrestore);
+
             m_bMax = true;
+            m_pButtonRestore->setVisible(m_bMax);
+            m_pButtonMax->setVisible(!m_bMax);
         }
     }
 }
@@ -176,3 +177,4 @@ void CustomTitle::onclickedButtonMin()
         emit signalMin();
     }
 }
+

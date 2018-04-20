@@ -6,8 +6,9 @@
 #include <QBoxLayout>
 #include <QLabel>
 #include "Common/customtitle.h"
+#include "Common/dialog.h"
 
-class MainWindow : public QWidget
+class MainWindow : public Dialog
 {
     Q_OBJECT
 
@@ -16,15 +17,21 @@ public:
     ~MainWindow();
 
 private slots:
-
+    void deleteItem();
+protected:
+    void closeEvent(QCloseEvent *event);
+    void changeEvent(QEvent *event);
 private:
     void loadQSS();
+
 private:
     CustomTitle *m_pTitleBar;
     QWidget *m_pWidgetContent;
     QVBoxLayout *m_pLayoutMain;
 
-
+private:
+    int m_iWidth;
+    int m_iHeight;
 
 };
 
