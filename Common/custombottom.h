@@ -12,7 +12,7 @@ class CustomBottom : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CustomBottom(QWidget *parent = 0,int flag = 0);
+    explicit CustomBottom(QWidget *parent = 0,int flag = 0,int width=1600,int height=900);
     void UpdateText();
 signals:
     void signalAccept();

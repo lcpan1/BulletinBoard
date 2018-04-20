@@ -15,7 +15,8 @@ class CustomMessageBox : public Dialog
 {
     Q_OBJECT
 public:
-    explicit CustomMessageBox(QWidget *parent = 0, QString strTitle="", QString strText="");
+    explicit CustomMessageBox(QWidget *parent = 0, QString strTitle="",
+                              QString strText="",int width=1600,int height=900);
 
 public:
     void setMessageBoxTitle(const QString &title);

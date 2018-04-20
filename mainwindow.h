@@ -23,6 +23,7 @@ protected:
     void changeEvent(QEvent *event);
 private:
     void loadQSS();
+    void UpdateText();
 
 private:
     CustomTitle *m_pTitleBar;

@@ -11,7 +11,7 @@ class CustomTitle : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CustomTitle(QWidget *parent = 0,bool maxmin = false,int height = 32);
+    explicit CustomTitle(QWidget *parent = 0,bool maxmin = false,int width=1600,int height = 900);
     void setTitleHight(int height);
     void setTitleName(const QString & name);
 
@@ -26,6 +26,8 @@ protected:
 
     virtual void mouseDoubleClickEvent(QMouseEvent *event);
     void paintEvent(QPaintEvent *event);
+
+    void resizeEvent(QResizeEvent *event);
 private slots:
     void onCloseButtonclick();
     void onClickedButtonMaxmin();

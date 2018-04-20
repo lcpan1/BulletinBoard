@@ -3,6 +3,12 @@ Dialog
     border:1px solid black;
     border-radius:1px;
 }
+QLabel#EditTitle,#CustomLableTitle
+{
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+}
 QPushButton#CustomButtonClose
 {
     background:transparent;

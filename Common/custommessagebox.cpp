@@ -4,7 +4,7 @@
 #include "customtitle.h"
 #include <QLabel>
 
-CustomMessageBox::CustomMessageBox(QWidget *parent, QString strTitle, QString strText) : Dialog(parent)
+CustomMessageBox::CustomMessageBox(QWidget *parent, QString strTitle, QString strText,int width,int height) : Dialog(parent)
 {
     setWindowFlags(Qt::FramelessWindowHint | Qt::Dialog);
     this->setAutoFillBackground(true);
@@ -12,7 +12,7 @@ CustomMessageBox::CustomMessageBox(QWidget *parent, QString strTitle, QString st
     pal.setColor(QPalette::Background,QColor(226,226,226));
     this->setPalette(pal);
 
-    this->setFixedSize(300,200);
+    this->setFixedSize(width,height);
     m_pCustomTitle = new CustomTitle(this);
     m_pCustomBottom = new CustomBottom(this,0);
 

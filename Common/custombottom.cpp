@@ -9,7 +9,7 @@
 #pragma execution_character_set("utf-8")
 #endif
 
-CustomBottom::CustomBottom(QWidget *parent,int flag) : QWidget(parent)
+CustomBottom::CustomBottom(QWidget *parent,int flag,int width,int height) : QWidget(parent)
 {
     this->setFixedHeight(55);
     m_iFlag = flag;
