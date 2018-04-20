@@ -19,9 +19,19 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    Common/custombottom.cpp \
+    Common/custommessagebox.cpp \
+    Common/customtitle.cpp \
+    Common/ulity.cpp \
+    Common/dialog.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    Common/custombottom.h \
+    Common/custommessagebox.h \
+    Common/customtitle.h \
+    Common/ulity.h \
+    Common/dialog.h
 
 
 
