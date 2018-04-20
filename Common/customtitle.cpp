@@ -7,7 +7,7 @@
 #include <QPainter>
 #include <QDebug>
 
-CustomTitle::CustomTitle(QWidget *parent,bool maxmin,int height) : QWidget(parent)
+CustomTitle::CustomTitle(QWidget *parent,bool maxmin,int width,int height) : QWidget(parent)
 {
     this->setAutoFillBackground(true);
     QPalette pal;
@@ -19,25 +19,25 @@ CustomTitle::CustomTitle(QWidget *parent,bool maxmin,int height) : QWidget(paren
     m_isPressed = false;
     m_bMax = false;
 
-    this->setFixedHeight(height);
+    this->setFixedHeight(height/25);
     m_pLabelTitle = new QLabel(this);
     m_pLabelTitle->setObjectName("CustomLableTitle");
 
     m_pButtonMin = new QPushButton(this);
     m_pButtonMin->setObjectName("CustomButtonMin");
-    m_pButtonMin->setFixedSize(height*2/3,height*2/3);
+    m_pButtonMin->setFixedSize(height*2/3/25,height*2/3/25);
 
     m_pButtonMax = new QPushButton(this);
     m_pButtonMax->setObjectName("CustomButtonMax");
-    m_pButtonMax->setFixedSize(height*2/3,height*2/3);
+    m_pButtonMax->setFixedSize(height*2/3/25,height*2/3/25);
 
     m_pButtonRestore = new QPushButton(this);
     m_pButtonRestore->setObjectName("CustomButtonRestore");
-    m_pButtonRestore->setFixedSize(height*2/3,height*2/3);
+    m_pButtonRestore->setFixedSize(height*2/3/25,height*2/3/25);
 
     m_pButtonClose = new QPushButton(this);
     m_pButtonClose->setObjectName("CustomButtonClose");
-    m_pButtonClose->setFixedSize(height*2/3,height*2/3);
+    m_pButtonClose->setFixedSize(height*2/3/25,height*2/3/25);
 
     if(!m_bMaxmin)
     {
@@ -52,10 +52,8 @@ CustomTitle::CustomTitle(QWidget *parent,bool maxmin,int height) : QWidget(paren
     }
 
 
-
-
-
     m_pLayout = new QHBoxLayout(this);
+    m_pLayout->addSpacing(height*2/3/25);
     m_pLayout->addStretch();
     m_pLayout->addWidget(m_pLabelTitle);
     m_pLayout->addStretch();
@@ -64,7 +62,7 @@ CustomTitle::CustomTitle(QWidget *parent,bool maxmin,int height) : QWidget(paren
     m_pLayout->addWidget(m_pButtonRestore);
     m_pLayout->addWidget(m_pButtonClose);
 
-    m_pLayout->setContentsMargins(0,0,10,0);
+    m_pLayout->setContentsMargins(5,0,5,0);
     setLayout(m_pLayout);
     connect(m_pButtonClose,SIGNAL(clicked(bool)),this,SLOT(onCloseButtonclick()));
     connect(m_pButtonMax,SIGNAL(clicked(bool)),this,SLOT(onClickedButtonMaxmin()));
@@ -83,6 +81,8 @@ void CustomTitle::setTitleName(const QString &name)
 {
     m_pLabelTitle->setText(name);
     m_pLabelTitle->setToolTip(name);
+
+
 }
 
 void CustomTitle::mousePressEvent(QMouseEvent *event)
@@ -138,6 +138,12 @@ void CustomTitle::paintEvent(QPaintEvent *event)
     opt.init(this);
     QPainter painter(this);
     style()->drawPrimitive(QStyle::PE_Widget,&opt,&painter,this);
+}
+
+void CustomTitle::resizeEvent(QResizeEvent *event)
+{
+    qDebug()<<"height"<<this->height();
+
 }
 
 void CustomTitle::onCloseButtonclick()

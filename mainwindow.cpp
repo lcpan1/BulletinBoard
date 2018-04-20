@@ -21,9 +21,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     qDebug()<<deskRect<<screenRect<<nScreenCount;
 
+    m_iWidth = screenRect.width();
+    m_iHeight = screenRect.height();
 
-    this->setMinimumSize(screenRect.width()*3/4,screenRect.height()*3/4);
-    this->setMaximumSize(screenRect.width(),screenRect.height());
+
+    this->setMinimumSize(m_iWidth*3/4,m_iHeight*3/4);
+    this->setMaximumSize(m_iWidth,m_iHeight);
 
 
     this->setAutoFillBackground(true);
@@ -35,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->loadQSS();
 
-    m_pTitleBar = new CustomTitle(this,true,screenRect.height()/25);
+    m_pTitleBar = new CustomTitle(this,true,screenRect.width(),screenRect.height());
 
 
     m_pWidgetContent = new QWidget(this);
@@ -46,6 +49,8 @@ MainWindow::MainWindow(QWidget *parent)
     m_pLayoutMain->setMargin(1);
 
     this->setLayout(m_pLayoutMain);
+
+    UpdateText();
 
     connect(m_pTitleBar,&CustomTitle::signalClose,this,&MainWindow::close);
 
@@ -66,7 +71,7 @@ void MainWindow::deleteItem()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    CustomMessageBox *m_pMessagebox = new CustomMessageBox(this);
+    CustomMessageBox *m_pMessagebox = new CustomMessageBox(this,"","",m_iWidth,m_iHeight);
     if(NULL == m_pMessagebox) return;
 
     m_pMessagebox->setMessageBoxTitle(tr("Warning"));
@@ -115,4 +120,9 @@ void MainWindow::loadQSS()
     {
         qDebug()<<"Not find";
     }
+}
+
+void MainWindow::UpdateText()
+{
+    m_pTitleBar->setTitleName(tr("Board"));
 }
