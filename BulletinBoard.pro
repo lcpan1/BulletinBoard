@@ -42,14 +42,14 @@ win32{
                 DESTDIR = $$PWD/../projects/x64/Debug/lib       #lib
                 DLLDESTDIR = $$PWD/../projects/x64/Debug/dll    #dll
             }else{
-                DESTDIR = $$PWD/../projects/x64/Debug/bin       #bin
+                DESTDIR = $$PWD/../projects/x64/Debug           #exe
             }
         }else{                                  #release
             contains(TEMPLATE,"lib"){
                 DESTDIR = $$PWD/../projects/x64/Release/lib     #lib
                 DLLDESTDIR = $$PWD/../projects/x64/Release/dll  #dll
             }else{
-                DESTDIR = $$PWD/../projects/x64/Release/bin     #bin
+                DESTDIR = $$PWD/../projects/x64/Release     #exe
             }
         }
     }else{                                      #x86
@@ -58,14 +58,14 @@ win32{
                 DESTDIR = $$PWD/../projects/x32/Debug/lib
                 DLLDESTDIR = $$PWD/../projects/x32/Debug/dll
             }else{
-                DESTDIR = $$PWD/../projects/x32/Debug/bin
+                DESTDIR = $$PWD/../projects/x32/Debug
             }
         }else{
             contains(TEMPLATE,"lib"){
                 DESTDIR = $$PWD/../projects/x32/Release/lib
                 DLLDESTDIR = $$PWD/../projects/x32/Release/dll
             }else{
-                DESTDIR = $$PWD/../projects/x32/Release/bin
+                DESTDIR = $$PWD/../projects/x32/Release
             }
         }
 
@@ -73,3 +73,6 @@ win32{
 }else{
     DESTDIR = $${PWD}/../bin  #unix
 }
+
+RESOURCES += \
+    res.qrc

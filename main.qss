@@ -1,0 +1,22 @@
+QPushButton#CustomButtonClose
+{
+    background:transparent;
+    border-image:url(./image/close_window.png);
+    border-radius: 3px;
+}
+QPushButton#CustomButtonMin
+{
+    background:transparent;
+    border-image:url(./image/min.png);
+    border-radius: 3px;
+}
+QPushButton#CustomButtonMaxmin
+{
+    background:transparent;
+    border-radius: 3px;
+}
+QPushButton#CustomButtonClose:pressed,#CustomButtonMaxmin:pressed,#CustomButtonMin:pressed
+{
+    margin-left: 2px;
+    margin-top: 2px;
+}

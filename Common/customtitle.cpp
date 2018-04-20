@@ -51,7 +51,8 @@ CustomTitle::CustomTitle(QWidget *parent,bool maxmin) : QWidget(parent)
     m_pLayout->addWidget(m_pButtonMin);
     m_pLayout->addWidget(m_pButtonMaxMin);
     m_pLayout->addWidget(m_pButtonClose);
-    m_pLayout->setMargin(0);
+
+    m_pLayout->setContentsMargins(0,0,10,0);
     setLayout(m_pLayout);
     connect(m_pButtonClose,SIGNAL(clicked(bool)),this,SLOT(onCloseButtonclick()));
     connect(m_pButtonMaxMin,SIGNAL(clicked(bool)),this,SLOT(onClickedButtonMaxmin()));

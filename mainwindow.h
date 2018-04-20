@@ -18,6 +18,8 @@ public:
 private slots:
 
 private:
+    void loadQSS();
+private:
     CustomTitle *m_pTitleBar;
     QWidget *m_pWidgetContent;
     QVBoxLayout *m_pLayoutMain;

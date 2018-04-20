@@ -2,6 +2,9 @@
 #include <QDebug>
 #include <QDesktopWidget>
 #include <QApplication>
+#include <QFile>
+#include <QDir>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
@@ -27,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinMaxButtonsHint);
 
+    this->loadQSS();
 
     m_pTitleBar = new CustomTitle(this,true);
     m_pTitleBar->setTitleHight(screenRect.height()/20);
@@ -49,4 +53,37 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
 
+}
+
+void MainWindow::loadQSS()
+{
+    qDebug()<<QApplication::applicationDirPath();
+
+    QString m_strAppQss = ":/main.qss";
+    QString m_strPath = QApplication::applicationDirPath();
+
+    //获取上级目录绝对路径
+    QDir dir(m_strPath);
+    dir.cdUp();
+    qDebug()<<dir;
+    qDebug()<<dir.absoluteFilePath("");
+
+    qDebug()<<"load qss"<<m_strPath + m_strAppQss;
+    QString m_strQSS = "/QSS/playback.qss";
+    m_strPath = m_strPath + m_strQSS;
+    //    QFile qssFile(m_strPath + m_strAppQss);
+    QFile qssFile(m_strAppQss);
+
+    qssFile.open(QFile::ReadOnly);
+    if(qssFile.isOpen())
+    {
+        qDebug()<<"test";
+        QString qss = QLatin1String(qssFile.readAll());
+        this->setStyleSheet(qss);
+        qssFile.close();
+    }
+    else
+    {
+        qDebug()<<"Not find";
+    }
 }
