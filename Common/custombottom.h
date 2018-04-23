@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "Common/ulity.h"
+#include "loadres.h"
 
 class QPushButton;
 class QDialogButtonBox;
@@ -12,7 +13,7 @@ class CustomBottom : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CustomBottom(QWidget *parent = 0,int flag = 0,int width=1600,int height=900);
+    explicit CustomBottom(QWidget *parent = 0,int flag = 0,LoadRes* pRes = 0);
     void UpdateText();
 signals:
     void signalAccept();

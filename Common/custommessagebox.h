@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "Common/dialog.h"
+#include "loadres.h"
 
 class QLabel;
 class QVBoxLayout;
@@ -16,7 +17,7 @@ class CustomMessageBox : public Dialog
     Q_OBJECT
 public:
     explicit CustomMessageBox(QWidget *parent = 0, QString strTitle="",
-                              QString strText="",int width=1600,int height=900);
+                              QString strText="",LoadRes* pRes = 0);
 
 public:
     void setMessageBoxTitle(const QString &title);

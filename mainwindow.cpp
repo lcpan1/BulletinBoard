@@ -20,7 +20,8 @@ MainWindow::MainWindow(QWidget *parent)
     //获取屏幕数量
     int nScreenCount = QApplication::desktop()->screenCount();
 
-    qDebug()<<deskRect<<screenRect<<nScreenCount;
+
+    m_pLoadRes = new LoadRes();
 
     m_iWidth = screenRect.width();
     m_iHeight = screenRect.height();
@@ -39,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->loadQSS();
 
-    m_pTitleBar = new CustomTitle(this,true,screenRect.width(),screenRect.height());
+    m_pTitleBar = new CustomTitle(this,true,m_pLoadRes);
 
     m_pWidgetSetting = new QWidget(this);
     m_pWidgetSetting->setObjectName("WidgetSetting");
@@ -124,7 +125,7 @@ void MainWindow::slotSetting()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    CustomMessageBox *m_pMessagebox = new CustomMessageBox(this,"","",m_iWidth,m_iHeight);
+    CustomMessageBox *m_pMessagebox = new CustomMessageBox(this,"","",m_pLoadRes);
     if(NULL == m_pMessagebox) return;
 
     m_pMessagebox->setMessageBoxTitle(tr("Warning"));

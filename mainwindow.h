@@ -8,6 +8,7 @@
 #include <QPushButton>
 #include "Common/customtitle.h"
 #include "Common/dialog.h"
+#include "loadres.h"
 
 class MainWindow : public Dialog
 {
@@ -45,6 +46,8 @@ private:
     int m_iWidth;
     int m_iHeight;
     bool m_bFull;
+
+    LoadRes* m_pLoadRes;
 
 };
 

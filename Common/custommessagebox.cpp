@@ -4,7 +4,7 @@
 #include "customtitle.h"
 #include <QLabel>
 
-CustomMessageBox::CustomMessageBox(QWidget *parent, QString strTitle, QString strText,int width,int height) : Dialog(parent)
+CustomMessageBox::CustomMessageBox(QWidget *parent, QString strTitle, QString strText,LoadRes* pRes) : Dialog(parent)
 {
     setWindowFlags(Qt::FramelessWindowHint | Qt::Dialog);
     this->setAutoFillBackground(true);
@@ -12,9 +12,13 @@ CustomMessageBox::CustomMessageBox(QWidget *parent, QString strTitle, QString st
     pal.setColor(QPalette::Background,QColor(226,226,226));
     this->setPalette(pal);
 
+
+    int width = pRes->m_nScreenWidth;
+    int height = pRes->m_nScreenHeight;
+
     this->setFixedSize(width/5,height/5);
-    m_pCustomTitle = new CustomTitle(this,false,width,height);
-    m_pCustomBottom = new CustomBottom(this,0,width,height);
+    m_pCustomTitle = new CustomTitle(this,false,pRes);
+    m_pCustomBottom = new CustomBottom(this,0,pRes);
 
     m_pLabelPic = new QLabel(this);
 //    m_pLabelPic->setPixmap(QPixmap("./image/question.png"));
@@ -23,6 +27,28 @@ CustomMessageBox::CustomMessageBox(QWidget *parent, QString strTitle, QString st
 
     m_pLabelTip = new QLabel(this);
     m_pLabelTip->setWordWrap(true);
+
+
+    QFont font = m_pLabelTip->font();
+    // 取得最开始的字体大小
+    int fontsize = font.pixelSize();
+
+    qDebug()<<"fontsize:"<<fontsize;
+
+    if (fontsize == -1)
+    {
+        fontsize = font.pointSize();
+        if (fontsize == -1)
+        {
+            qDebug()<<"fontsize:---1"<<fontsize;
+        }
+        else
+        {
+            qDebug()<<"fontsize:::::"<<fontsize;
+        }
+    }
+
+
 
     m_pCustomTitle->setTitleName(strTitle);
     m_pLabelTip->setText(strText);

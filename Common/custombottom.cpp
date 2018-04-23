@@ -9,8 +9,11 @@
 #pragma execution_character_set("utf-8")
 #endif
 
-CustomBottom::CustomBottom(QWidget *parent,int flag,int width,int height) : QWidget(parent)
+CustomBottom::CustomBottom(QWidget *parent,int flag,LoadRes* pRes) : QWidget(parent)
 {
+    int width = pRes->m_nScreenWidth;
+    int height = pRes->m_nScreenHeight;
+
     this->setFixedHeight(height/18);
     m_iFlag = flag;
     setAutoFillBackground(true);

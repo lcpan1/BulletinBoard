@@ -7,7 +7,7 @@
 #include <QPainter>
 #include <QDebug>
 
-CustomTitle::CustomTitle(QWidget *parent,bool maxmin,int width,int height) : QWidget(parent)
+CustomTitle::CustomTitle(QWidget *parent,bool maxmin,LoadRes* pRes) : QWidget(parent)
 {
     this->setAutoFillBackground(true);
     QPalette pal;
@@ -18,6 +18,9 @@ CustomTitle::CustomTitle(QWidget *parent,bool maxmin,int width,int height) : QWi
     m_bMaxmin = maxmin;
     m_isPressed = false;
     m_bMax = false;
+
+    int height = pRes->m_nScreenHeight;
+//    int width = pRes->m_nScreenWidth;
 
     this->setFixedHeight(height/25);
     m_pLabelTitle = new QLabel(this);

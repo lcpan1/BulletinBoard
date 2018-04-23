@@ -2,6 +2,7 @@
 #define CUSTOMTITLE_H
 
 #include <QWidget>
+#include "loadres.h"
 
 class QLabel;
 class QPushButton;
@@ -11,7 +12,7 @@ class CustomTitle : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CustomTitle(QWidget *parent = 0,bool maxmin = false,int width=1600,int height = 900);
+    explicit CustomTitle(QWidget *parent = 0,bool maxmin = false, LoadRes* pRes = 0);
     void setTitleHight(int height);
     void setTitleName(const QString & name);
 
