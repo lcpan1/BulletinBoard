@@ -11,7 +11,7 @@
 
 CustomBottom::CustomBottom(QWidget *parent,int flag,int width,int height) : QWidget(parent)
 {
-    this->setFixedHeight(55);
+    this->setFixedHeight(height/18);
     m_iFlag = flag;
     setAutoFillBackground(true);
     QPalette plt = palette();
@@ -22,8 +22,11 @@ CustomBottom::CustomBottom(QWidget *parent,int flag,int width,int height) : QWid
     m_pButtonCancel = new QPushButton(this);
     m_pButtonOk->setObjectName("ButtonOk");
     m_pButtonCancel->setObjectName("ButtonCancel");
-//    m_pButtonOk->setFocusPolicy(Qt::NoFocus);
+    m_pButtonOk->setFixedSize(width/22,height/40);
+    m_pButtonCancel->setFixedSize(width/22,height/40);
+    m_pButtonOk->setFocusPolicy(Qt::NoFocus);
     m_pButtonCancel->setFocusPolicy(Qt::NoFocus);
+
 
     m_pButtonBox->addButton(m_pButtonOk,QDialogButtonBox::AcceptRole);
     m_pButtonBox->addButton(m_pButtonCancel,QDialogButtonBox::RejectRole);

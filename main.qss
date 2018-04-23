@@ -6,7 +6,8 @@ Dialog
 QLabel#EditTitle,#CustomLableTitle
 {
     color:white;
-    font-size:20px;
+    font-size:12pt  ;
+    font-family: "Microsoft YaHei";
     font-weight:bold;
 }
 QPushButton#CustomButtonClose
@@ -37,4 +38,39 @@ QPushButton#CustomButtonClose:pressed,#CustomButtonMax:pressed,#CustomButtonMin:
 {
     margin-left: 2px;
     margin-top: 2px;
+}
+/*bottom button    */
+QPushButton#ButtonOk,#ButtonCancel
+{
+    background-color:white;
+    border:1px solid gray;
+    border-radius: 3px;
+    border-style:outset;
+    outline:0px;
+}
+QPushButton#ButtonCancel:hover,#ButtonOk:hover
+{
+    color:rgb(192,13,13);
+    background:qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1,
+            stop:0 rgba(254,248,248,255), stop:1 rgba(237,220,220,255));
+    border:1px solid rgb(196,96,97);
+    padding-left: 4px;
+    padding-top: 0px;
+}
+QPushButton#ButtonCancel:pressed,#ButtonOk:pressed
+{
+    padding-left: 4px;
+    padding-top: 4px;
+    border:1px solid gray;
+
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 rgb(206,206,206), stop: 1 rgb(230,230,230));
+    border-style:inset;
+}
+/*message box*/
+QLabel#messagePic
+{
+    background:transparent;
+    border-image:url(./image/question.png);
+    border-radius: 3px;
 }

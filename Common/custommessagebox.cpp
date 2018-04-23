@@ -12,12 +12,15 @@ CustomMessageBox::CustomMessageBox(QWidget *parent, QString strTitle, QString st
     pal.setColor(QPalette::Background,QColor(226,226,226));
     this->setPalette(pal);
 
-    this->setFixedSize(width,height);
-    m_pCustomTitle = new CustomTitle(this);
-    m_pCustomBottom = new CustomBottom(this,0);
+    this->setFixedSize(width/5,height/5);
+    m_pCustomTitle = new CustomTitle(this,false,width,height);
+    m_pCustomBottom = new CustomBottom(this,0,width,height);
 
     m_pLabelPic = new QLabel(this);
-    m_pLabelPic->setPixmap(QPixmap("./image/question.png"));
+//    m_pLabelPic->setPixmap(QPixmap("./image/question.png"));
+    m_pLabelPic->setObjectName("messagePic");
+    m_pLabelPic->setFixedSize(height*2/3/25,height*2/3/25);
+
     m_pLabelTip = new QLabel(this);
     m_pLabelTip->setWordWrap(true);
 
@@ -29,10 +32,10 @@ CustomMessageBox::CustomMessageBox(QWidget *parent, QString strTitle, QString st
     m_pLayoutInfo->addStretch();
     m_pLayoutInfo->addWidget(m_pLabelPic,Qt::AlignRight);
     m_pLayoutInfo->addWidget(m_pLabelTip,Qt::AlignCenter);
-    m_pLayoutInfo->addSpacing(20);
-    m_pLayoutInfo->addStretch();
-    m_pLayoutInfo->setContentsMargins(50,10,50,10);
-//    m_pLayoutInfo->setSpacing(20);
+//    m_pLayoutInfo->addSpacing(20);
+
+    m_pLayoutInfo->setContentsMargins(width/30,height/90,width/30,height/90);
+
 
     m_pLayout = new QVBoxLayout(this);
     m_pLayout->addWidget(m_pCustomTitle);
@@ -59,19 +62,20 @@ void CustomMessageBox::setMessageBoxTip(const QString &tip)
 
 void CustomMessageBox::setMessageBoxType(int type)
 {
-    switch (type) {
-    case 0:
-        m_pLabelPic->setPixmap(QPixmap("./image/question.png"));
-        break;
-    case 1:
-        m_pLabelPic->setPixmap(QPixmap("./image/question.png"));
-        break;
-    case 2:
-        m_pLabelPic->setPixmap(QPixmap("./image/question.png"));
-        break;
-    default:
-        break;
-    }
+    Q_UNUSED(type);
+//    switch (type) {
+//    case 0:
+//        m_pLabelPic->setPixmap(QPixmap("./image/question.png"));
+//        break;
+//    case 1:
+//        m_pLabelPic->setPixmap(QPixmap("./image/question.png"));
+//        break;
+//    case 2:
+//        m_pLabelPic->setPixmap(QPixmap("./image/question.png"));
+//        break;
+//    default:
+//        break;
+//    }
 }
 
 void CustomMessageBox::UpdateText()
