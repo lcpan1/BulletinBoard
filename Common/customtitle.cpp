@@ -85,6 +85,11 @@ void CustomTitle::setTitleName(const QString &name)
 
 }
 
+bool CustomTitle::getTitleMax()
+{
+    return m_bMax;
+}
+
 void CustomTitle::mousePressEvent(QMouseEvent *event)
 {
     if (m_bMaxmin)

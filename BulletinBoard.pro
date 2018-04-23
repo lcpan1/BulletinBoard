@@ -24,14 +24,24 @@ SOURCES += main.cpp\
     Common/custommessagebox.cpp \
     Common/customtitle.cpp \
     Common/ulity.cpp \
-    Common/dialog.cpp
+    Common/dialog.cpp \
+    Widget/widgetbulletin.cpp \
+    Widget/widgetidentify.cpp \
+    Widget/widgetcharacterinfo.cpp \
+    Widget/dialogsetting.cpp \
+    loadres.cpp
 
 HEADERS  += mainwindow.h \
     Common/custombottom.h \
     Common/custommessagebox.h \
     Common/customtitle.h \
     Common/ulity.h \
-    Common/dialog.h
+    Common/dialog.h \
+    Widget/widgetbulletin.h \
+    Widget/widgetidentify.h \
+    Widget/widgetcharacterinfo.h \
+    Widget/dialogsetting.h \
+    loadres.h
 
 
 

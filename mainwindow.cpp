@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QCloseEvent>
 #include "Common/custommessagebox.h"
+#include "Widget/dialogsetting.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -40,13 +41,30 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_pTitleBar = new CustomTitle(this,true,screenRect.width(),screenRect.height());
 
+    m_pWidgetSetting = new QWidget(this);
+    m_pWidgetSetting->setObjectName("WidgetSetting");
+    m_pWidgetSetting->setFixedHeight(m_iHeight/25);
+    m_pLayoutSetting = new QHBoxLayout(m_pWidgetSetting);
+    m_pButtonSetting = new QPushButton(this);
+    m_pButtonFullScreen = new QPushButton(this);
+    m_pButtonSetting->setObjectName("ButtonSetting");
+    m_pButtonFullScreen->setObjectName("ButtonFullscreen");
+
+    m_pLayoutSetting->addStretch();
+    m_pLayoutSetting->addWidget(m_pButtonSetting);
+    m_pLayoutSetting->addWidget(m_pButtonFullScreen);
+    m_pLayoutSetting->setContentsMargins(10,0,10,0);
+
+    m_pWidgetSetting->setLayout(m_pLayoutSetting);
 
     m_pWidgetContent = new QWidget(this);
 
     m_pLayoutMain = new QVBoxLayout(this);
     m_pLayoutMain->addWidget(m_pTitleBar);
+    m_pLayoutMain->addWidget(m_pWidgetSetting);
     m_pLayoutMain->addWidget(m_pWidgetContent);
     m_pLayoutMain->setMargin(1);
+    m_pLayoutMain->setSpacing(0);
 
     this->setLayout(m_pLayoutMain);
 
@@ -55,6 +73,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_pTitleBar,&CustomTitle::signalClose,this,&MainWindow::close);
 
     connect(m_pTitleBar,&CustomTitle::signalMin,this,&MainWindow::showMinimized);
+    connect(m_pButtonFullScreen,&QPushButton::clicked,this,&MainWindow::slotFullScreen);
+    connect(m_pButtonSetting,&QPushButton::clicked,this,&MainWindow::slotSetting);
 
 }
 
@@ -68,6 +88,39 @@ void MainWindow::deleteItem()
     qDebug()<<"close";
 
 }
+
+void MainWindow::slotFullScreen()
+{
+    if(this->isFullScreen())
+    {
+        m_pTitleBar->setVisible(true);
+        if(m_pTitleBar->getTitleMax())
+            showMaximized();
+        else
+            showNormal();
+
+
+    }
+    else
+    {
+        m_pTitleBar->setVisible(false);
+        showFullScreen();
+    }
+
+
+
+}
+
+void MainWindow::slotSetting()
+{
+    DialogSetting *pDialogSetting = new DialogSetting(this);
+    if(NULL == pDialogSetting) return;
+
+    pDialogSetting->exec();
+
+    delete pDialogSetting;
+}
+
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
@@ -91,6 +144,19 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::changeEvent(QEvent *event)
 {
 
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    switch (event->key())
+    {
+    case Qt::Key_Escape:
+        if(this->isFullScreen())
+            slotFullScreen();
+        break;
+    default:
+        MainWindow::keyPressEvent(event);
+    }
 }
 
 void MainWindow::loadQSS()
@@ -125,4 +191,6 @@ void MainWindow::loadQSS()
 void MainWindow::UpdateText()
 {
     m_pTitleBar->setTitleName(tr("Board"));
+    m_pButtonSetting->setText(tr("Setting"));
+    m_pButtonFullScreen->setText(tr("FullScreen"));
 }

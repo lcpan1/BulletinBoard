@@ -5,6 +5,7 @@
 #include <QTableWidget>
 #include <QBoxLayout>
 #include <QLabel>
+#include <QPushButton>
 #include "Common/customtitle.h"
 #include "Common/dialog.h"
 
@@ -18,21 +19,32 @@ public:
 
 private slots:
     void deleteItem();
+    void slotFullScreen();
+    void slotSetting();
+
 protected:
     void closeEvent(QCloseEvent *event);
     void changeEvent(QEvent *event);
+    void keyPressEvent(QKeyEvent *event);
 private:
     void loadQSS();
     void UpdateText();
 
 private:
     CustomTitle *m_pTitleBar;
+    QWidget *m_pWidgetSetting;
+    QPushButton *m_pButtonSetting;
+    QPushButton *m_pButtonFullScreen;
+    QHBoxLayout *m_pLayoutSetting;
+
+
     QWidget *m_pWidgetContent;
     QVBoxLayout *m_pLayoutMain;
 
 private:
     int m_iWidth;
     int m_iHeight;
+    bool m_bFull;
 
 };
 

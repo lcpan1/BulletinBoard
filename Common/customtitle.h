@@ -15,6 +15,7 @@ public:
     void setTitleHight(int height);
     void setTitleName(const QString & name);
 
+    bool getTitleMax();
 
 signals:
     void signalClose();
