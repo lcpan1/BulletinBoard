@@ -7,6 +7,9 @@
 #include "Common/customtitle.h"
 #include "Common/custombottom.h"
 #include <QBoxLayout>
+#include <QTabWidget>
+#include "Widget/bulletinsetting.h"
+#include "Widget/identifysetting.h"
 
 class DialogSetting : public Dialog
 {
@@ -25,7 +28,16 @@ private:
     CustomBottom *m_pBottomBar;
     QWidget *m_pWidgetContent;
 
+    QTabWidget *m_pTabWidget;
+
+    BulletinSetting *m_pModeBulletin;
+
+    IdentifySetting *m_pModeIdentify;
+
+
     QVBoxLayout *m_pLayoutMain;
+private:
+    int m_iCurrentIndex;
 };
 
 #endif // DIALOGSETTING_H

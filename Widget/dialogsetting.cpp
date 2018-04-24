@@ -1,5 +1,6 @@
 #include "dialogsetting.h"
 #include <QDebug>
+#include <QTabBar>
 
 DialogSetting::DialogSetting(QWidget *parent,LoadRes *pRes) : Dialog(parent)
 {
@@ -12,6 +13,8 @@ DialogSetting::DialogSetting(QWidget *parent,LoadRes *pRes) : Dialog(parent)
 
     this->setFixedSize(800,600);
 
+    m_iCurrentIndex = 0;
+
 
 
     m_pTitleBar = new CustomTitle(this,false,pRes);
@@ -19,9 +22,25 @@ DialogSetting::DialogSetting(QWidget *parent,LoadRes *pRes) : Dialog(parent)
 
     m_pWidgetContent = new QWidget(this);
 
+
+    m_pTabWidget = new QTabWidget(this);
+    m_pTabWidget->setObjectName("myTab");
+    m_pTabWidget->tabBar()->setObjectName("myTabBar");
+
+
+    m_pModeBulletin = new BulletinSetting(m_pTabWidget);
+    m_pTabWidget->addTab(m_pModeBulletin,tr("Mode1"));
+
+    m_pModeIdentify = new IdentifySetting(m_pTabWidget);
+    m_pTabWidget->addTab(m_pModeIdentify,tr("Mode2"));
+
+
+
+
     m_pLayoutMain = new QVBoxLayout(this);
     m_pLayoutMain->addWidget(m_pTitleBar);
     m_pLayoutMain->addWidget(m_pWidgetContent);
+    m_pLayoutMain->addWidget(m_pTabWidget);
     m_pLayoutMain->addWidget(m_pBottomBar);
     m_pLayoutMain->setMargin(1);
     m_pLayoutMain->setSpacing(0);

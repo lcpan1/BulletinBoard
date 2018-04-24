@@ -18,10 +18,19 @@ public:
 
 signals:
 
-public slots:
+
+private slots:
+
+protected:
+    void resizeEvent(QResizeEvent *event);
+    void paintEvent(QPaintEvent *event);
 
 private:
     void UpdateText();
+
+    void FitPicToLabel();
+
+    void GetPictureSize();
 
 private:
 

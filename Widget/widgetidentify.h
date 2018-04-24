@@ -4,7 +4,12 @@
 #include <QWidget>
 #include <QLabel>
 #include <QBoxLayout>
+#include <QGridLayout>
+#include "Widget/widgetcharacterinfo.h"
 
+#define MAX_SHOW_NUM 25
+#define MAX_ROW 5
+#define MAX_COLUMN 5
 
 class WidgetIdentify : public QWidget
 {
@@ -15,6 +20,19 @@ public:
 signals:
 
 public slots:
+private:
+    void CreatePicBox();
+    void PictureMove();
+
+private:
+    WidgetCharacterInfo *m_pArrayInfo[MAX_SHOW_NUM];
+    QLabel *m_pLabelType[MAX_ROW];
+
+    QGridLayout *m_pLayoutMain;
+
+private:
+    int m_iRow;
+    int m_iColumn;
 
 
 };

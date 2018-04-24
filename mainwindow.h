@@ -9,6 +9,7 @@
 #include "Common/customtitle.h"
 #include "Common/dialog.h"
 #include "loadres.h"
+#include "Widget/widgetidentify.h"
 
 class MainWindow : public Dialog
 {
@@ -40,6 +41,9 @@ private:
 
 
     QWidget *m_pWidgetContent;
+    WidgetIdentify *m_pWidgetIdentify;
+
+
     QVBoxLayout *m_pLayoutMain;
 
 private:

@@ -29,7 +29,9 @@ SOURCES += main.cpp\
     Widget/widgetidentify.cpp \
     Widget/widgetcharacterinfo.cpp \
     Widget/dialogsetting.cpp \
-    loadres.cpp
+    loadres.cpp \
+    Widget/bulletinsetting.cpp \
+    Widget/identifysetting.cpp
 
 HEADERS  += mainwindow.h \
     Common/custombottom.h \
@@ -42,7 +44,9 @@ HEADERS  += mainwindow.h \
     Widget/widgetcharacterinfo.h \
     Widget/dialogsetting.h \
     loadres.h \
-    Common/commdef.h
+    Common/commdef.h \
+    Widget/bulletinsetting.h \
+    Widget/identifysetting.h
 
 
 

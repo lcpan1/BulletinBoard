@@ -58,12 +58,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_pWidgetSetting->setLayout(m_pLayoutSetting);
 
-    m_pWidgetContent = new QWidget(this);
+//    m_pWidgetContent = new QWidget(this);
+    m_pWidgetIdentify = new WidgetIdentify(this);
 
     m_pLayoutMain = new QVBoxLayout(this);
     m_pLayoutMain->addWidget(m_pTitleBar);
     m_pLayoutMain->addWidget(m_pWidgetSetting);
-    m_pLayoutMain->addWidget(m_pWidgetContent);
+    m_pLayoutMain->addWidget(m_pWidgetIdentify);
     m_pLayoutMain->setMargin(1);
     m_pLayoutMain->setSpacing(0);
 
