@@ -31,6 +31,38 @@ CustomBottom::CustomBottom(QWidget *parent,int flag,LoadRes* pRes) : QWidget(par
     m_pButtonCancel->setFocusPolicy(Qt::NoFocus);
 
 
+    QFont font = m_pButtonOk->font();
+    // 取得最开始的字体大小
+    int fontsize = font.pixelSize();
+
+    qDebug()<<"button fontsize:"<<fontsize;
+
+    if (fontsize == -1)//查看是否按照像素设置字体大小
+    {
+        fontsize = font.pointSize();
+        if (fontsize == -1)//查看是否按照点设置字体大小
+        {
+            qDebug()<<"button fontsize:---1"<<fontsize;
+        }
+        else
+        {
+            qDebug()<<"button fontsize:::::"<<fontsize;
+            font.setFamily("Microsoft YaHei");
+            //设置文字为粗体
+            font.setBold(false);             //封装的setWeight函数
+            //设置文字大小为50像素
+            font.setPixelSize(20*pRes->m_nDPI/96 - 1);
+
+            qDebug()<<"last pix::"<<font.pixelSize();
+
+
+            m_pButtonOk->setFont(font);
+            m_pButtonCancel->setFont(font);
+        }
+    }
+
+
+
     m_pButtonBox->addButton(m_pButtonOk,QDialogButtonBox::AcceptRole);
     m_pButtonBox->addButton(m_pButtonCancel,QDialogButtonBox::RejectRole);
     m_pLayout = new QVBoxLayout;

@@ -26,6 +26,18 @@ CustomTitle::CustomTitle(QWidget *parent,bool maxmin,LoadRes* pRes) : QWidget(pa
     m_pLabelTitle = new QLabel(this);
     m_pLabelTitle->setObjectName("CustomLableTitle");
 
+    QFont font;
+    //设置文字字体
+    font.setFamily("Microsoft YaHei");
+    //设置文字为粗体
+    font.setBold(true);             //封装的setWeight函数
+    //设置文字大小为50像素
+    font.setPixelSize(20*pRes->m_nDPI/96);
+    qDebug()<<"title pix::"<<font.pixelSize();
+    m_pLabelTitle->setFont(font);
+
+
+
     m_pButtonMin = new QPushButton(this);
     m_pButtonMin->setObjectName("CustomButtonMin");
     m_pButtonMin->setFixedSize(height*2/3/25,height*2/3/25);

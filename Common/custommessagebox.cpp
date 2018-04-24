@@ -20,6 +20,8 @@ CustomMessageBox::CustomMessageBox(QWidget *parent, QString strTitle, QString st
     m_pCustomTitle = new CustomTitle(this,false,pRes);
     m_pCustomBottom = new CustomBottom(this,0,pRes);
 
+
+
     m_pLabelPic = new QLabel(this);
 //    m_pLabelPic->setPixmap(QPixmap("./image/question.png"));
     m_pLabelPic->setObjectName("messagePic");
@@ -45,8 +47,18 @@ CustomMessageBox::CustomMessageBox(QWidget *parent, QString strTitle, QString st
         else
         {
             qDebug()<<"fontsize:::::"<<fontsize;
+            font.setFamily("Microsoft YaHei");
+            //设置文字为粗体
+            font.setBold(false);             //封装的setWeight函数
+            //设置文字大小为50像素
+            font.setPixelSize(20*pRes->m_nDPI/96 - 1);
+            qDebug()<<"tip last pix::"<<font.pixelSize();
+
+            m_pLabelTip->setFont(font);
         }
     }
+
+
 
 
 

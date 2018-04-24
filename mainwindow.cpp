@@ -23,8 +23,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_pLoadRes = new LoadRes();
 
-    m_iWidth = screenRect.width();
-    m_iHeight = screenRect.height();
+    m_iWidth = m_pLoadRes->m_nScreenWidth;
+    m_iHeight =m_pLoadRes->m_nScreenHeight;
 
 
     this->setMinimumSize(m_iWidth*3/4,m_iHeight*3/4);

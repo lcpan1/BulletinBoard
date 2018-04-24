@@ -41,7 +41,8 @@ HEADERS  += mainwindow.h \
     Widget/widgetidentify.h \
     Widget/widgetcharacterinfo.h \
     Widget/dialogsetting.h \
-    loadres.h
+    loadres.h \
+    Common/commdef.h
 
 
 
