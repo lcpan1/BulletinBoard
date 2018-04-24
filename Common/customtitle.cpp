@@ -6,6 +6,7 @@
 #include <QStyleOption>
 #include <QPainter>
 #include <QDebug>
+#include "Common/commdef.h"
 
 CustomTitle::CustomTitle(QWidget *parent,bool maxmin,LoadRes* pRes) : QWidget(parent)
 {
@@ -22,7 +23,7 @@ CustomTitle::CustomTitle(QWidget *parent,bool maxmin,LoadRes* pRes) : QWidget(pa
     int height = pRes->m_nScreenHeight;
 //    int width = pRes->m_nScreenWidth;
 
-    this->setFixedHeight(height/25);
+    this->setFixedHeight(height/TITLE_HEIGHT);
     m_pLabelTitle = new QLabel(this);
     m_pLabelTitle->setObjectName("CustomLableTitle");
 
@@ -32,7 +33,7 @@ CustomTitle::CustomTitle(QWidget *parent,bool maxmin,LoadRes* pRes) : QWidget(pa
     //设置文字为粗体
     font.setBold(true);             //封装的setWeight函数
     //设置文字大小为50像素
-    font.setPixelSize(20*pRes->m_nDPI/96);
+    font.setPixelSize(FONT_SIZE*pRes->m_nDPI/STANDARD_DPI );
     qDebug()<<"title pix::"<<font.pixelSize();
     m_pLabelTitle->setFont(font);
 
@@ -40,19 +41,19 @@ CustomTitle::CustomTitle(QWidget *parent,bool maxmin,LoadRes* pRes) : QWidget(pa
 
     m_pButtonMin = new QPushButton(this);
     m_pButtonMin->setObjectName("CustomButtonMin");
-    m_pButtonMin->setFixedSize(height*2/3/25,height*2/3/25);
+    m_pButtonMin->setFixedSize(height*TITLE_BUTTON/TITLE_HEIGHT,height*TITLE_BUTTON/TITLE_HEIGHT);
 
     m_pButtonMax = new QPushButton(this);
     m_pButtonMax->setObjectName("CustomButtonMax");
-    m_pButtonMax->setFixedSize(height*2/3/25,height*2/3/25);
+    m_pButtonMax->setFixedSize(height*TITLE_BUTTON/TITLE_HEIGHT,height*TITLE_BUTTON/TITLE_HEIGHT);
 
     m_pButtonRestore = new QPushButton(this);
     m_pButtonRestore->setObjectName("CustomButtonRestore");
-    m_pButtonRestore->setFixedSize(height*2/3/25,height*2/3/25);
+    m_pButtonRestore->setFixedSize(height*TITLE_BUTTON/TITLE_HEIGHT,height*TITLE_BUTTON/TITLE_HEIGHT);
 
     m_pButtonClose = new QPushButton(this);
     m_pButtonClose->setObjectName("CustomButtonClose");
-    m_pButtonClose->setFixedSize(height*2/3/25,height*2/3/25);
+    m_pButtonClose->setFixedSize(height*TITLE_BUTTON/TITLE_HEIGHT,height*TITLE_BUTTON/TITLE_HEIGHT);
 
     if(!m_bMaxmin)
     {
@@ -68,7 +69,7 @@ CustomTitle::CustomTitle(QWidget *parent,bool maxmin,LoadRes* pRes) : QWidget(pa
 
 
     m_pLayout = new QHBoxLayout(this);
-    m_pLayout->addSpacing(height*2/3/25);
+    m_pLayout->addSpacing(height*TITLE_BUTTON/TITLE_HEIGHT);
     m_pLayout->addStretch();
     m_pLayout->addWidget(m_pLabelTitle);
     m_pLayout->addStretch();

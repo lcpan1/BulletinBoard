@@ -3,16 +3,29 @@
 
 #include <QWidget>
 #include "Common/dialog.h"
+#include "loadres.h"
+#include "Common/customtitle.h"
+#include "Common/custombottom.h"
+#include <QBoxLayout>
 
 class DialogSetting : public Dialog
 {
     Q_OBJECT
 public:
-    explicit DialogSetting(QWidget *parent = 0,int width=1600,int height=900);
+    explicit DialogSetting(QWidget *parent = 0,LoadRes *pRes = 0);
 
 signals:
 
-public slots:
+private slots:
+    void slotAccept();
+private:
+    void UpdateText();
+private:
+    CustomTitle *m_pTitleBar;
+    CustomBottom *m_pBottomBar;
+    QWidget *m_pWidgetContent;
+
+    QVBoxLayout *m_pLayoutMain;
 };
 
 #endif // DIALOGSETTING_H

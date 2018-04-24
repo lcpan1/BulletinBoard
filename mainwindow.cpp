@@ -114,7 +114,7 @@ void MainWindow::slotFullScreen()
 
 void MainWindow::slotSetting()
 {
-    DialogSetting *pDialogSetting = new DialogSetting(this);
+    DialogSetting *pDialogSetting = new DialogSetting(this,m_pLoadRes);
     if(NULL == pDialogSetting) return;
 
     pDialogSetting->exec();
