@@ -44,10 +44,10 @@ void WidgetCharacterInfo::setCharacterInfo(QString info1, QString info2, QString
 
 void WidgetCharacterInfo::resizeEvent(QResizeEvent *event)
 {
-    qDebug()<<"width::"<<this->width();
-    qDebug()<<"height:"<<this->height();
+//    qDebug()<<"width::"<<this->width();
+//    qDebug()<<"height:"<<this->height();
 
-    qDebug()<<"pic "<<m_pLabelPictre->size();
+//    qDebug()<<"pic "<<m_pLabelPictre->size();
 
     FitPicToLabel();
 }
@@ -66,7 +66,8 @@ void WidgetCharacterInfo::paintEvent(QPaintEvent *event)
 void WidgetCharacterInfo::UpdateText()
 {
     m_pLabelInfo1->setText("Name:XXX");
-    m_pLabelInfo2->setText("Time:XXX");
+    m_pLabelInfo2->setText("Time:2018.04.21 09:22:10");
+    m_pLabelInfo2->setWordWrap(true);
     m_pLabelInfo3->setText("Info:XXX");
 
 }

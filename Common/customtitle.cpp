@@ -181,6 +181,7 @@ void CustomTitle::onClickedButtonMaxmin()
         if(pWindow->isMaximized())
         {
             pWindow->showNormal();
+
             m_bMax = false;
             m_pButtonRestore->setVisible(m_bMax);
             m_pButtonMax->setVisible(!m_bMax);

@@ -6,6 +6,7 @@
 #include <QDir>
 #include <QMessageBox>
 #include <QCloseEvent>
+#include <QKeyEvent>
 #include "Common/custommessagebox.h"
 #include "Widget/dialogsetting.h"
 
@@ -27,8 +28,8 @@ MainWindow::MainWindow(QWidget *parent)
     m_iHeight =m_pLoadRes->m_nScreenHeight;
 
 
-    this->setMinimumSize(m_iWidth*3/4,m_iHeight*3/4);
-    this->setMaximumSize(m_iWidth,m_iHeight);
+    this->setFixedSize(m_iWidth*3/4,m_iHeight*3/4);
+//    this->setMaximumSize(m_iWidth,m_iHeight);
 
 
     this->setAutoFillBackground(true);
@@ -157,7 +158,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
             slotFullScreen();
         break;
     default:
-        MainWindow::keyPressEvent(event);
+        Dialog::keyPressEvent(event);
     }
 }
 

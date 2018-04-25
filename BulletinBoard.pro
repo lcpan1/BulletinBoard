@@ -31,7 +31,8 @@ SOURCES += main.cpp\
     Widget/dialogsetting.cpp \
     loadres.cpp \
     Widget/bulletinsetting.cpp \
-    Widget/identifysetting.cpp
+    Widget/identifysetting.cpp \
+    Widget/rollingwidget.cpp
 
 HEADERS  += mainwindow.h \
     Common/custombottom.h \
@@ -46,7 +47,8 @@ HEADERS  += mainwindow.h \
     loadres.h \
     Common/commdef.h \
     Widget/bulletinsetting.h \
-    Widget/identifysetting.h
+    Widget/identifysetting.h \
+    Widget/rollingwidget.h
 
 
 

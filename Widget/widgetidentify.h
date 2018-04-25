@@ -7,9 +7,9 @@
 #include <QGridLayout>
 #include "Widget/widgetcharacterinfo.h"
 
-#define MAX_SHOW_NUM 25
-#define MAX_ROW 5
-#define MAX_COLUMN 5
+#define MAX_SHOW_NUM 125
+#define MAX_ROW 10
+#define MAX_COLUMN 10
 
 class WidgetIdentify : public QWidget
 {
@@ -20,9 +20,13 @@ public:
 signals:
 
 public slots:
+protected:
+//    void resizeEvent(QResizeEvent *event);
 private:
     void CreatePicBox();
     void PictureMove();
+
+    void addInfo();
 
 private:
     WidgetCharacterInfo *m_pArrayInfo[MAX_SHOW_NUM];
@@ -33,6 +37,10 @@ private:
 private:
     int m_iRow;
     int m_iColumn;
+
+    int m_iWhiteRowCount;
+    int m_iBlackRowCount;
+    int m_iStrangerRowCount;
 
 
 };
